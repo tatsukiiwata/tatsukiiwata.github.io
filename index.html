@@ -269,45 +269,56 @@ $(window).on('load',function(){
     }
 });
 </script>
-<div id="wrap">  <div id="content"><section id="main">
-<!-- <h1 class="wrap"><span class="jp">スタッフ紹介</span></h1> -->
-</section>
-<div style="position:relative">
-  <div class="wrap bg_top_semicircle flex"></div>
-</div>
-<h1 class="title"><span class="en red">STAFF</span><span class="jp">スタッフ紹介</span></h1>
-<section id="staff" class="entry">
-  <input type="hidden" name="max_page" value="5">
-	<input type="hidden" name="page" value="1">
-	<input type="hidden" name="limit" value="3">
-  <input type="hidden" name="lock" value="0">
-  <div class="list wrap three">  </div>      <a href="##" class="more button" style="margin-top:2rem">MORE</a>  
-   </div>
-	<section id="staff" class="entry">
-  <div class="list">
-    <div class="card">
-      <div class="image">
-        <img src="https://i.postimg.cc/d1GSGLGH/IMG-6477.png" alt="岩田 順賀">
-      </div>
-      <div class="text">
-        <span class="role">営業部長</span>
-        <div class="flex">
-          <h3>岩田 順賀</h3>
-          <span class="red">Junka Iwata</span>
-        </div>
-        <div class="entry-content">
-          <p>
-            "お客様が最善の選択が出来るよう、"<br>
-            "やる気！元気！全力でサポートします！"
-          </p>
-        </div>
-      </div>
-      <div class="icon">
-        <img src="https://rabbyshome.com/images/staff/logo_hanbai.png" alt="ラビーズホーム販売">
-      </div>
+<div id="wrap">  
+  <div id="content">
+    <section id="main">
+      <!-- <h1 class="wrap"><span class="jp">スタッフ紹介</span></h1> -->
+    </section>
+    
+    <div style="position:relative">
+      <div class="wrap bg_top_semicircle flex"></div>
     </div>
+
+    <h1 class="title"><span class="en red">STAFF</span><span class="jp">スタッフ紹介</span></h1>
+
+    <section id="staff" class="entry">
+      <input type="hidden" name="max_page" value="5">
+      <input type="hidden" name="page" value="1">
+      <input type="hidden" name="limit" value="3">
+      <input type="hidden" name="lock" value="0">
+
+      <!-- スタッフ情報リスト -->
+      <div class="list wrap three">
+        <div class="card">
+          <div class="image">
+            <img src="https://i.postimg.cc/d1GSGLGH/IMG-6477.png" alt="岩田 順賀">
+          </div>
+          <div class="text">
+            <span class="role">営業部長</span>
+            <div class="flex">
+              <h3>岩田 順賀</h3>
+              <span class="red">Junka Iwata</span>
+            </div>
+            <div class="entry-content">
+              <p>
+                "お客様が最善の選択が出来るよう、"<br>
+                "やる気！元気！全力でサポートします！"
+              </p>
+            </div>
+          </div>
+          <div class="icon">
+            <img src="https://rabbyshome.com/images/staff/logo_hanbai.png" alt="ラビーズホーム販売">
+          </div>
+        </div>
+      </div>
+
+      <!-- MOREボタン -->
+      <a href="##" class="more button" style="margin-top:2rem">MORE</a>
+
+    </section>
   </div>
-</section>
+</div>
+
 <style>
   body{background:#f9f9f9}
   #main{background-image:url(https://rabbyshome.com/images/_main/staff.jpg)}
