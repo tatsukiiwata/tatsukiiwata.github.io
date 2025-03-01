@@ -365,7 +365,8 @@ $(window).on('load',function(){
         return false;
       }
       $("input[name=lock]").val(1);
-      ul.append('<li class="loading">NOW LOADING...</li>');
+	    <!-- NOW LOADING... -->
+      ul.append('<li class="loading"></li>');
       $.ajax( {
         url: 'https://rabbyshome.com/_get_data/get_staff_archives.php?page='+page+'&limit='+limit,
         dataType: 'text',
