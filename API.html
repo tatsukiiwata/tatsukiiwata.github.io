@@ -93,6 +93,13 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=34.6937&longitude=135.502
     document.getElementById("weather").innerText = data.current_weather.temperature + '℃';
   });
 
+// ビットコイン価格API（CoinGecko）
+fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=jpy')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("crypto").innerText = data.bitcoin.jpy.toLocaleString() + '円';
+  });
+
 // 名言API（Quotable）
 fetch('https://api.quotable.io/random')
   .then(res => res.json())
@@ -101,30 +108,17 @@ fetch('https://api.quotable.io/random')
   });
 
 // 猫画像API（The Cat API）
-fetch('https://api.thecatapi.com/v1/images/search')
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("quote").innerHTML = data.content;
-    const img = document.createElement('img');
-    document.getElementById("quote").src = data[0].url;
-  });
-
-// 名言API（Quotable）
-fetch('https://api.quotable.io/random')
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("quote").innerHTML = `${data.content} — ${data.author}`;
-  });
-
-
-// 猫画像更新ボタン
 function getCat(){
   fetch('https://api.thecatapi.com/v1/images/search')
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("cat").src = data[0].url;
-  });
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("cat").src = data[0].url;
+    });
 }
+
+// 初回の猫画像取得
+getCat();
+
 
 
 document.querySelector("button").addEventListener('click', getCat);
