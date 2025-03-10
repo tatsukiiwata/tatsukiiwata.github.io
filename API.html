@@ -101,10 +101,13 @@ fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=j
   });
 
 // 名言API（Quotable）
-fetch('https://api.adviceslip.com/advice')
+fetch('https://meigen.doodlenote.net/api/json.php')
   .then(res => res.json())
   .then(data => {
-    document.getElementById("quote").innerHTML = data.slip.advice;
+    document.getElementById("quote").innerHTML = `${data[0].meigen} — ${data[0].auther}`;
+  })
+  .catch(error => {
+    document.getElementById("quote").innerText = `エラー: ${error}`;
   });
 
 
