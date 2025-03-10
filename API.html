@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APIデータ連携ページ</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Noto Sans JP', Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      margin: 20px;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      color: #1e88e5;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #42a5f5;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1976d2;
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+  <h1>APIデータ連携ページ</h1>
+
+  <div class="card">
+    <h2>🌤️ 現在の大阪の気温（Open-Meteo API）</h2>
+    <p id="weather">読み込み中...</p>
+  </div>
+
+  <div class="card">
+    <h2>📈 現在のビットコイン価格（CoinGecko API）</h2>
+    <p id="crypto">読み込み中...</p>
+  </div>
+
+  <div class="card">
+    <h2>📚 今日の名言（Quotable API）</h2>
+    <p id="quote">読み込み中...</p>
+  </div>
+
+  <div class="card">
+    <h2>🐱 ランダムな猫画像（The Cat API）</h2>
+    <img id="cat" src="" style="max-width: 100%; border-radius:5px;">
+    <br>
+    <button onclick="getCat()">猫画像を再取得</button>
+  </div>
+
+</div>
+
+<script>
+// 天気予報API（Open-Meteo）
+fetch('https://api.open-meteo.com/v1/forecast?latitude=34.6937&longitude=135.5023&current_weather=true')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("weather").innerText = data.current_weather.temperature + '℃';
+  });
+
+// 名言API（Quotable）
+fetch('https://api.quotable.io/random')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("quote").innerHTML = `${data.content} — ${data.author}`;
+  });
+
+// 猫画像API（The Cat API）
+fetch('https://api.thecatapi.com/v1/images/search')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("quote").innerHTML = data.content;
+    const img = document.createElement('img');
+    document.getElementById("quote").src = data[0].url;
+  });
+
+// 名言API（Quotable）
+fetch('https://api.quotable.io/random')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("quote").innerHTML = `${data.content} — ${data.author}`;
+  });
+
+// 猫画像更新ボタン
+function getCat(){
+  fetch('https://api.thecatapi.com/v1/images/search')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("quote").innerHTML = `<img src="${data[0].url}" alt="Cat" style="width:100%;">`;
+  });
+}
+
+document.querySelector("button").addEventListener('click', getCat);
+</script>
+
+</body>
+</html>
