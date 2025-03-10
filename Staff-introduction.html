@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スタッフ紹介ページ</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Noto Sans JP", Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      color: #42a5f5;
+      margin-bottom: 20px;
+    }
+
+    .staff-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .card {
+      background-color: #fff;
+      width: 230px;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .card h3 {
+      margin-top: 10px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    @media (max-width: 600px) {
+      .staff-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>スタッフ紹介ページ</h1>
+    <div class="staff-cards" id="staffCards">
+      <!-- JavaScriptで動的に表示 -->
+    </div>
+  </div>
+
+  <script>
+    const staffList = [
+      { name: "岩田 順賀", role: "営業部長", message: "やる気！元気！全力でサポートします！", img: "https://via.placeholder.com/300x150" },
+      { name: "岩田 将大", role: "営業部", message: "一生に一度の買い物をお手伝いします！", img: "https://via.placeholder.com/300x150" },
+      { name: "吉村 亮一", role: "営業部", message: "好きな言葉はダイエット！", img: "https://via.placeholder.com/300x150" },
+      // 他のスタッフもここに追加
+    ];
+
+    const container = document.getElementById('staffCards');
+
+    staffList.forEach(staff => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <img src="${staff.img}" alt="${staff.name}">
+        <h3>${staff.name}</h3>
+        <p><strong>${staff.role}</strong></p>
+        <p>${staff.message}</p>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+
+</html>
