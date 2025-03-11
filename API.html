@@ -41,17 +41,25 @@
       margin-bottom: 15px;
     }
 
-    button {
+    .btn {
       background-color: #42a5f5;
       color: #fff;
-      padding: 10px;
+      padding: 10px 15px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
     }
 
-    button:hover {
+    .btn:hover {
       background-color: #1976d2;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-top: 10px;
     }
   </style>
 
@@ -72,15 +80,16 @@
   </div>
 
   <div class="card">
-    <h2>📚 今日の名言（Quotable API）</h2>
+    <h2>📚 今日の名言（日本語）</h2>
     <p id="quote">読み込み中...</p>
+    <button class="btn" onclick="updateMeigen()">名言を更新</button>
   </div>
 
   <div class="card">
     <h2>🐱 ランダムな猫画像（The Cat API）</h2>
-    <img id="cat" src="" style="max-width: 100%; border-radius:5px;">
+    <img id="cat" src="">
     <br>
-    <button onclick="getCat()">猫画像を再取得</button>
+    <button class="btn" onclick="getCat()">猫画像を再取得</button>
   </div>
 
 </div>
@@ -100,16 +109,28 @@ fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=j
     document.getElementById("crypto").innerText = data.bitcoin.jpy.toLocaleString() + '円';
   });
 
-// 名言API（Quotable）
-fetch('https://meigen.doodlenote.net/api/json.php')
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("quote").innerHTML = `${data[0].meigen} — ${data[0].auther}`;
-  })
-  .catch(error => {
-    document.getElementById("quote").innerText = `エラー: ${error}`;
-  });
+// 日本語の名言リスト
+const meigenList = [
+    "成功する秘訣は、成功するまでやり続けることだ。",
+    "夢を追いかける勇気があれば、すべての夢は実現できる。",
+    "昨日より賢く、今日より強く、明日はもっと良くなる。",
+    "挑戦しなければ、成功は生まれない。",
+    "困難の中にこそ、チャンスがある。",
+    "継続は力なり。",
+    "努力は裏切らない。",
+    "どんなに暗い夜でも、朝は必ず来る。",
+    "小さな努力の積み重ねが、大きな成功を生む。",
+    "本当の失敗とは、何もしないことだ。"
+];
 
+// ランダムな名言を表示する関数
+function updateMeigen() {
+    const randomIndex = Math.floor(Math.random() * meigenList.length);
+    document.getElementById("quote").innerText = meigenList[randomIndex];
+}
+
+// ページ読み込み時に名言を表示
+updateMeigen();
 
 
 // 猫画像API（The Cat API）
@@ -123,10 +144,6 @@ function getCat(){
 
 // 初回の猫画像取得
 getCat();
-
-
-
-document.querySelector("button").addEventListener('click', getCat);
 </script>
 
 </body>
